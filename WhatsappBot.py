@@ -1,7 +1,7 @@
 from selenium import webdriver 
 from selenium.webdriver.common.keys import Keys 
 from selenium.webdriver.common.by import By
-
+from info import target, message, auto_send
 import time 
 import ctypes  
 
@@ -15,12 +15,10 @@ def intro():
     time.sleep(1)
     print("  WP karekodunu okutup, whatsapp içeriğini gördükten sonra tekrar buraya gelip göndermek istediğin mesajı gir ")
     time.sleep(3)
-    print(" ")
-    print("  Kullanım İçin ekte bulunan chromedriver.exe dosyasını C:/Webdriver içerisine at. ( WebDriver klasörünü sen oluşturmalısın.) ")
-    time.sleep(3)
-    ctypes.windll.user32.MessageBoxW(0, "chromedriver.exe dosyasının C:/Webdriver/chromedriver.exe dizininde bulunduğundan eminsen tamama tıkla", "Dikkat", 0)
+    ctypes.windll.user32.MessageBoxW(0, "chromedriver.exe dosyasının webdriver/chromedriver.exe dizininde bulunduğundan eminsen tamama tıkla", "Dikkat", 0)
 
 def menu():
+    # ! Burası şu an kullanılmıyor. Direk info.py içerisinden emir alınıyor.
     """ Kullanıcıdan seçimin alındığı menu görevi gören metod"""
 
     print("")
@@ -36,14 +34,14 @@ def menu():
 def getName():
     """ Mesaj kime gönderilecek bilgisini alıp , döndürür. """
 
-    target    = input("Mesajını kime göndereceksin( İsmi doğru girmelisin) : ")
+    # target    = input("Mesajını kime göndereceksin( İsmi doğru girmelisin) : ")
     return target
 
 def getMessage():
     """ Mesaj bilgisini alır , döndürür. """
 
-    mymessage = input("Mesajını girebilirsin (Mesajı girdikten sonra ENTER'a tıklamalısın) : ")
-    return mymessage
+    # message = input("Mesajını girebilirsin (Mesajı girdikten sonra ENTER'a tıklamalısın) : ")
+    return message
 
 def setAction(driver , auto_send_message = False):
 
@@ -74,22 +72,19 @@ def WP():
     """ Tüm işlemlerin yönetildiği ve tutulduğu panel-metod"""
 
     intro()
-    driver = webdriver.Chrome(executable_path = "C:\Webdriver\chromedriver.exe" ) # Buraya kendi webdriver path'inizi verin.
+    driver = webdriver.Chrome(executable_path = "webdriver/chromedriver.exe" ) # Buraya kendi webdriver path'inizi verin.
     driver.get("https://web.whatsapp.com/")  #  url'yi verelim
     time.sleep(4)
     print(" ! Whatsapp'a giriş yapmadan mesaj girme")
-    while(True):
 
-        operation = int(menu())
-        if(operation == 3):
-            break
-        elif(operation == 1):
-            setAction(driver , auto_send_message=False)
-        elif(operation == 2):
-            setAction(driver , auto_send_message=True)
-                
+    ctypes.windll.user32.MessageBoxW(0, "QR kodu okuttuysan devam etmek için tamama tıkla", "Dikkat", 0)
+
+    while(True):
+        # info.py içerisinden alınan bilgi setAction metoduna gönderilir.
+        setAction(driver , auto_send_message=auto_send)
+        break
+
     out()
     driver.close()
-
 
 WP()
