@@ -17,7 +17,7 @@ Uygulamayı kullanarak terminalden belirlediğin kişiye mesajını gönderebilm
 
 Uygulamayı kullanmak için WhatsappBot.exe dosyasını kullanabilirsin. Bu dosyayı çalıştırdığında webdriver klasörü ve info.py dosyası ile aynı yerde olduğundan emin ol.
 
-Çalışan sürümü indirmek için : [indir]()
+Çalışan sürümü indirmek için : [indir](https://github.com/Pilestin/Selenium-Whatsapp-Bot/blob/master/setup.zip)
 
 Kodları incelemek isterseniz WhatsappBot.py dosyasına bakabilirsiniz.
 
